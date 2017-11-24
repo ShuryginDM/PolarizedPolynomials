@@ -1,135 +1,108 @@
 #ifndef FIELD_ELEM_H
 #define FIELD_ELEM_H
 
-#include <vector>
 #include <algorithm>
 #include <iostream>
-/**
-*Класс, используемый для того, чтобы показать тип исключения
-*"Попытка суммирования элементов разных полей"
-*/
-class SumOfDifferentFields {};
-
-/**
-*Класс, используемый для того, чтобы показать тип исключения
-*"Попытка посчитать произведение элементов разных полей"
-*/
-class MulOfDifferentFields {};
 
 class FieldElem
 {
 public:
-    FieldElem(unsigned int new_size, unsigned int t = 0){
-        size = new_size;
-        for(unsigned int i = 0; i < size; i++){
-            elem.push_back(t & 1);
-            t >>= 1;
-        }
+    FieldElem(unsigned int t = 0){
+        c1 = t & 1;
+        c2 = (t >> 1) & 1;
     }
 
     FieldElem(const FieldElem &t){
-        size = t.size;
-        elem = t.elem;
+        c1 = t.c1;
+        c2 = t.c2;
     }
 
-    const bool operator [](int &i){
-        return elem[i];
-    }
-
-    FieldElem operator +=(FieldElem &a){
-        if(size != a.size){
-            throw SumOfDifferentFields();
-        }
-        for(unsigned int i = 0; i < size; i++){
-            elem[i] = elem[i] ^ a.elem[i];
-        }
+    FieldElem &operator +=(FieldElem a){
+        c1 ^= a.c1;
+        c2 ^= a.c2;
         return *this;
     }
 
     FieldElem operator +(FieldElem &a){
-        if(size != a.size){
-            throw SumOfDifferentFields();
-        }
         FieldElem sum_(a);
-        for(unsigned int i = 0; i < size; i++){
-            sum_.elem[i] = sum_.elem[i] ^ elem[i];
-        }
+        sum_.c1 ^= c1;
+        sum_.c2 ^= c2;
         return sum_;
     }
 
     FieldElem operator *(FieldElem &a){
-        if(size != a.size){
-            throw MulOfDifferentFields();
-        }
-        FieldElem full_mul_(2 * size - 1);
-        FieldElem mul_(size);
-        for(unsigned int i = 0; i < size; i++){
-            for(unsigned int j = 0; j < size; j++){
-                full_mul_.elem[i+j] = full_mul_.elem[i+j] ^ (elem[i] & a.elem[j]);
-            }
-        }
-        for(unsigned int i = 2 * size - 2; i >= size; i--){
-            if(full_mul_.elem[i]){
-                for(unsigned int j = 0; j <= size; j++){
-                    full_mul_.elem[i-j] = !full_mul_.elem[i-j];
-                }
-            }
-        }
-        for(unsigned int i = 0; i < size; i++){
-            mul_.elem[i] = full_mul_.elem[i];
+        FieldElem mul_;
+        mul_.c2 = a.c2 * c2;
+        mul_.c1 = (a.c2 & c1) ^ (c2 & a.c1);
+        if(c1 && a.c1){
+            mul_.c2 = !mul_.c2;
+            mul_.c1 = !mul_.c1;
         }
         return mul_;
     }
 
-    FieldElem operator *=(FieldElem &a){
-        if(size != a.size){
-            throw MulOfDifferentFields();
+    FieldElem &operator *=(FieldElem &a){
+        FieldElem mul_;
+        mul_.c2 = a.c2 * c2;
+        mul_.c1 = (a.c2 & c1) ^ (c2 & a.c1);
+        if(c1 && a.c1){
+            mul_.c2 = !mul_.c2;
+            mul_.c1 = !mul_.c1;
         }
-        FieldElem full_mul_(2 * size - 1);
-        FieldElem mul_(size);
-        for(unsigned int i = 0; i < size; i++){
-            for(unsigned int j = 0; j < size; j++){
-                full_mul_.elem[i+j] = full_mul_.elem[i+j] ^ (elem[i] & a.elem[j]);
-            }
-        }
-        for(unsigned int i = 2 * size - 2; i >= size; i--){
-            if(full_mul_.elem[i]){
-                for(unsigned int j = 0; j <= size; j++){
-                    full_mul_.elem[i-j] = !full_mul_.elem[i-j];
-                }
-            }
-        }
-        for(unsigned int i = 0; i < size; i++){
-            mul_.elem[i] = full_mul_.elem[i];
-        }
-        return mul_;
+        c1 = mul_.c1;
+        c2 = mul_.c2;
+        return *this;
     }
 
     FieldElem pow(unsigned int p){
+        FieldElem power(1);
         if(p == 0){
-            FieldElem power(1);
-            return power;
-        }else{
-            FieldElem power(*this);
-            for(unsigned int i = 1; i < p; i++){
-                power = power * *this;
-            }
             return power;
         }
+        p = p % 3;
+        if(p == 0){
+            p += 3;
+        }
+        while(p){
+            power *= *this;
+            p--;
+        }
+        return power;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const FieldElem& q){
-        unsigned int a = 0;
-        for(auto i = q.elem.rbegin(); i < q.elem.rend(); i++){
-            a <<= 1;
-            a |= *i;
+    bool operator==(const FieldElem &a){
+        return c1 == a.c1 && c2 == a.c2;
+    }
+
+    inline bool operator!=(const FieldElem &rhs){ return !(*this == rhs); }
+
+    bool operator!(){
+        return !(c1 | c2);
+    }
+
+    bool operator==(const unsigned int &a){
+        return *this == FieldElem(a);
+    }
+
+    bool operator<(const FieldElem &a) const{
+        if(c1 & !(a.c1)){
+            return false;
         }
-        os << a;
+        if(!(a.c1) && c2 && !(a.c2)){
+            return false;
+        }
+        return true;
+    }
+
+    inline bool operator!=( const unsigned int &rhs){ return !(*this == rhs); }
+
+
+    friend std::ostream& operator<<(std::ostream& os, const FieldElem &q){
+        os << q.c1 * 2 + q.c2;
         return os;
     }
 private:
-    std::vector<bool> elem;
-    unsigned int size;
+    bool c1, c2;
 };
 
 #endif
