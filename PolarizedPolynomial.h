@@ -30,7 +30,7 @@ public:
         powers = pows;
     }
 
-    FieldElem &val_in_point(std::vector<FieldElem> &p){
+    FieldElem val_in_point(std::vector<FieldElem> &p){
         if(p.size() != var_number){
             throw DifferentSize();
         }
@@ -65,6 +65,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const PolarizedMonomial &q){
         for(unsigned int i = 0; i + 1 < q.var_number; i++){
             if(!(q.powers[i])){
+                os << "1";
                 continue;
             }
             FieldElem t = q.polarization[i];
@@ -93,6 +94,10 @@ private:
 class PolarizedPolynomial{
 
 public:
+    PolarizedPolynomial(){
+        complexity = 0;
+    }
+
     PolarizedPolynomial(std::vector<PolarizedMonomial> &mon, std::vector<FieldElem> &coef){
         if(mon.size() != coef.size()){
             throw DifferentSize();
@@ -102,19 +107,34 @@ public:
         complexity = mon.size();
     }
 
-    FieldElem &val_in_point(std::vector<FieldElem> &p){
+    bool push_back(PolarizedMonomial &t, unsigned int q){
+        for(unsigned int i = 0; i < complexity; i++){
+            if(t == monomials[i]){
+                return false;
+            }
+            
+        }
+        complexity++;
+
+        monomials.push_back(t);
+        coefficient.push_back(q);
+        return true;
+    }
+
+    FieldElem val_in_point(std::vector<FieldElem> &p){
         if(p.size() != monomials[0].get_var_number()){
             throw DifferentSize();
         }
         FieldElem res;
         for(unsigned int i = 0; i < complexity; i++){
             PolarizedMonomial t = monomials[i];
-            res += coefficient[i] * t.val_in_point(p);
+            FieldElem q = t.val_in_point(p);
+            res += coefficient[i] * q;
         }
         return res;
     }
 
-    std::set<std::pair<PolarizedMonomial, FieldElem>> &different_monominals(){
+    std::set<std::pair<PolarizedMonomial, FieldElem>> different_monominals(){
         std::set<std::pair<PolarizedMonomial, FieldElem>> dif;
         for(unsigned int i = 0; i < complexity; i++){
             if(coefficient[i] != FieldElem(0)){

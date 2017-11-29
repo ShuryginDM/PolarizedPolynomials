@@ -8,8 +8,8 @@ class FieldElem
 {
 public:
     FieldElem(unsigned int t = 0){
-        c1 = t & 1;
-        c2 = (t >> 1) & 1;
+        c2 = t & 1;
+        c1 = (t >> 1) & 1;
     }
 
     FieldElem(const FieldElem &t){
