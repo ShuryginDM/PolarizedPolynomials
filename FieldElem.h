@@ -11,58 +11,21 @@ class FieldElem
 public:
     static FieldVec irreducible_polynominal;
     
-    FieldElem(){
-    }
+    FieldElem(){}
 
-    FieldElem(unsigned long long z){
-        v = FieldVec(z) % irreducible_polynominal;
-    }
+    FieldElem(unsigned long long z);
 
-    FieldElem(FieldVec &t){
-        v = t % irreducible_polynominal;
-    }
+    FieldElem(FieldVec &t);
 
-    FieldElem &operator +=(FieldElem &a){
-        v += a.v;
-        return *this;
-    }
+    FieldElem &operator +=(FieldElem &a);
 
-    FieldElem operator +(FieldElem &a){
-        FieldElem b = *this;
-        b += a;
-        return b;
-    }
+    FieldElem operator +(FieldElem &a);
 
-    FieldElem &operator *=(FieldElem &a){
-        v = (v * a.v) % irreducible_polynominal;
-        return *this;
-    }
+    FieldElem &operator *=(FieldElem &a);
 
-    FieldElem operator *(FieldElem &a){
-        FieldElem r = *this;
-        r *= a;
-        return r;
-    }
+    FieldElem operator *(FieldElem &a);
 
-    FieldElem pow(unsigned int p){
-        FieldElem power(0);
-        power.v[0] = 1;
-        for(int i = 0; i < irreducible_polynominal.size(); i++){
-            power.v.push_back(1);
-        }
-        if(p == 0){
-            return power;
-        }
-        p = p % FieldVec::q;
-        if(p == 0){
-            p += FieldVec::q;
-        }
-        while(p){
-            power *= *this;
-            p--;
-        }
-        return power;
-    }
+    FieldElem pow(unsigned int p);
 
     bool operator==(const FieldElem &a){
         return v == a.v;
@@ -82,8 +45,5 @@ public:
 private:
     FieldVec v;
 };
-
-unsigned int FieldVec::q = 2;
-FieldVec FieldElem::irreducible_polynominal(0);
 
 #endif

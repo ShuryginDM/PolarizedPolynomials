@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <utility>
-#include <set>
 
 #include "FieldElem.h"
 
@@ -58,10 +57,6 @@ public:
             }
         }
         return true;
-    }
-
-    bool operator<(const PolarizedMonomial &a) const{
-        return (polarization < a.polarization) | (powers < a.powers);
     }
 
     friend std::ostream& operator<<(std::ostream& os, const PolarizedMonomial &q){
@@ -136,16 +131,6 @@ public:
             res += z;
         }
         return res;
-    }
-
-    std::set<std::pair<PolarizedMonomial, FieldElem>> different_monominals(){
-        std::set<std::pair<PolarizedMonomial, FieldElem>> dif;
-        for(unsigned int i = 0; i < complexity; i++){
-            if(coefficient[i] != FieldElem(0)){
-                dif.insert(std::make_pair(monomials[i], coefficient[i]));
-            }
-        }
-        return dif;
     }
 
     friend std::ostream& operator<<(std::ostream& os, PolarizedPolynomial &q){
