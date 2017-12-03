@@ -36,9 +36,11 @@ public:
         }
         FieldElem res;
         FieldElem t;
+        FieldElem z;
         for(unsigned int i = 0; i < var_number; i++){
             t = (p[i] + polarization[i]);
-            res += t.pow(powers[i]);
+            z = t.pow(powers[i]);
+            res += z;
         }
         return res;
     }
@@ -126,10 +128,12 @@ public:
             throw DifferentSize();
         }
         FieldElem res;
+        FieldElem z;
         for(unsigned int i = 0; i < complexity; i++){
             PolarizedMonomial t = monomials[i];
             FieldElem q = t.val_in_point(p);
-            res += coefficient[i] * q;
+            z = coefficient[i] * q;
+            res += z;
         }
         return res;
     }
@@ -144,7 +148,7 @@ public:
         return dif;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const PolarizedPolynomial &q){
+    friend std::ostream& operator<<(std::ostream& os, PolarizedPolynomial &q){
         for(unsigned int i = 0; i + 1 < q.complexity; i++){
             os << q.coefficient[i] << " * " << q.monomials[i] << " + ";
         }

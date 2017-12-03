@@ -4,64 +4,58 @@
 #include <algorithm>
 #include <iostream>
 
+#include "FieldVec.h"
+
 class FieldElem
 {
 public:
-    FieldElem(unsigned int t = 0){
-        c2 = t & 1;
-        c1 = (t >> 1) & 1;
+    static FieldVec irreducible_polynominal;
+    
+    FieldElem(){
     }
 
-    FieldElem(const FieldElem &t){
-        c1 = t.c1;
-        c2 = t.c2;
+    FieldElem(unsigned long long z){
+        v = FieldVec(z) % irreducible_polynominal;
     }
 
-    FieldElem &operator +=(FieldElem a){
-        c1 ^= a.c1;
-        c2 ^= a.c2;
+    FieldElem(FieldVec &t){
+        v = t % irreducible_polynominal;
+    }
+
+    FieldElem &operator +=(FieldElem &a){
+        v += a.v;
         return *this;
     }
 
     FieldElem operator +(FieldElem &a){
-        FieldElem sum_(a);
-        sum_.c1 ^= c1;
-        sum_.c2 ^= c2;
-        return sum_;
-    }
-
-    FieldElem operator *(FieldElem &a){
-        FieldElem mul_;
-        mul_.c2 = a.c2 * c2;
-        mul_.c1 = (a.c2 & c1) ^ (c2 & a.c1);
-        if(c1 && a.c1){
-            mul_.c2 = !mul_.c2;
-            mul_.c1 = !mul_.c1;
-        }
-        return mul_;
+        FieldElem b = *this;
+        b += a;
+        return b;
     }
 
     FieldElem &operator *=(FieldElem &a){
-        FieldElem mul_;
-        mul_.c2 = a.c2 * c2;
-        mul_.c1 = (a.c2 & c1) ^ (c2 & a.c1);
-        if(c1 && a.c1){
-            mul_.c2 = !mul_.c2;
-            mul_.c1 = !mul_.c1;
-        }
-        c1 = mul_.c1;
-        c2 = mul_.c2;
+        v = (v * a.v) % irreducible_polynominal;
         return *this;
     }
 
+    FieldElem operator *(FieldElem &a){
+        FieldElem r = *this;
+        r *= a;
+        return r;
+    }
+
     FieldElem pow(unsigned int p){
-        FieldElem power(1);
+        FieldElem power(0);
+        power.v[0] = 1;
+        for(int i = 0; i < irreducible_polynominal.size(); i++){
+            power.v.push_back(1);
+        }
         if(p == 0){
             return power;
         }
-        p = p % 3;
+        p = p % FieldVec::q;
         if(p == 0){
-            p += 3;
+            p += FieldVec::q;
         }
         while(p){
             power *= *this;
@@ -71,38 +65,25 @@ public:
     }
 
     bool operator==(const FieldElem &a){
-        return c1 == a.c1 && c2 == a.c2;
+        return v == a.v;
     }
 
     inline bool operator!=(const FieldElem &rhs){ return !(*this == rhs); }
 
-    bool operator!(){
-        return !(c1 | c2);
-    }
-
-    bool operator==(const unsigned int &a){
-        return *this == FieldElem(a);
-    }
-
-    bool operator<(const FieldElem &a) const{
-        if(c1 & !(a.c1)){
-            return false;
+    friend std::ostream& operator<<(std::ostream& os, FieldElem &z){
+        unsigned long long w = 0;
+        for(int i = 0; i < z.v.size(); i++){
+            w *= FieldVec::q;
+            w += z.v[i];
         }
-        if(!(a.c1) && c2 && !(a.c2)){
-            return false;
-        }
-        return true;
-    }
-
-    inline bool operator!=( const unsigned int &rhs){ return !(*this == rhs); }
-
-
-    friend std::ostream& operator<<(std::ostream& os, const FieldElem &q){
-        os << q.c1 * 2 + q.c2;
+        os << w;
         return os;
     }
 private:
-    bool c1, c2;
+    FieldVec v;
 };
+
+unsigned int FieldVec::q = 2;
+FieldVec FieldElem::irreducible_polynominal(0);
 
 #endif
