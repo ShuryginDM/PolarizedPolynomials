@@ -34,11 +34,7 @@ FieldElem FieldElem::operator*(FieldElem &a){
 }
 
 FieldElem FieldElem::pow(unsigned int p){
-    FieldElem power(0);
-    power.v[0] = 1;
-    for(int i = 0; i < irreducible_polynominal.size(); i++){
-        power.v.push_back(1);
-    }
+    FieldElem power(1);
     if(p == 0){
         return power;
     }

@@ -2,4 +2,5 @@
 pol
 Makefile
 main.cpp
-.gigignore
+.gitignore
+doxyconf.txt
