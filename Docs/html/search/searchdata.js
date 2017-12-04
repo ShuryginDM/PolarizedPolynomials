@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "dfiopÐ",
-  1: "dfp",
-  2: "fp",
+  0: "bdfiopÐ",
+  1: "bdfp",
+  2: "bfp",
   3: "i",
   4: "o",
   5: "Ð"

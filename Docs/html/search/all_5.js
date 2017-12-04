@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['Библиотека_20работы_20с_20поляризованными_20полиномами_20над_20произвольным_20полем_2e',['Библиотека работы с поляризованными полиномами над произвольным полем.',['../index.html',1,'']]]
+  ['polarizedmonomial',['PolarizedMonomial',['../classPolarizedMonomial.html',1,'']]],
+  ['polarizedpolynomial',['PolarizedPolynomial',['../classPolarizedPolynomial.html',1,'']]],
+  ['pow',['pow',['../classFieldElem.html#a345bb4b3299d17b2f1886dad5a7a7e22',1,'FieldElem::pow()'],['../classBoolFieldElem.html#ad9a16a587aa8b75b023b47ad5ba27622',1,'BoolFieldElem::pow()']]]
 ];

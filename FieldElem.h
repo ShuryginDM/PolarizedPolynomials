@@ -85,4 +85,75 @@ private:
     FieldVec v;
 };
 
+/**
+* @brief Класс, реализующий элемент поля из 2 ^ k элементов
+*
+* @details Реализует работу с поляризованным полиномом над полем
+* из \f[2 ^ {BoolFieldElem::irreducible\_polynominal.size()} \f] элементов \n
+* Перед первой инициализацией переменной класса BoolFieldElem должен быть явно \n
+* указан BoolVec::irreducible_polynominal \n
+* irreducible_polynominal - неприводимый полином необходимой степени. Пример получения такого
+* [FieldVecLink]: https://github.com/ShuryginDM/FieldVec
+* полинома есть в [примере использования библиотеки FieldVec Example1][FieldVecLink] \n\n
+* ###Лучше использовать этот класс, чем FieldElem при FieldVec::q == 2.
+*/
+class BoolFieldElem
+{
+public:
+    /**
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    */
+    static BoolVec irreducible_polynominal;
+    
+    /**
+    * Конструктор. Создает полином, равный 0 в поле
+    */
+    BoolFieldElem(){}
+
+    /**
+    * Конструктор. Создает полином, равный z в виде записи этого числа в двоичной системе счисления
+    */
+    BoolFieldElem(unsigned long long z);
+
+    BoolFieldElem(BoolVec &t);
+
+    BoolFieldElem &operator+=(BoolFieldElem &a);
+
+    BoolFieldElem operator+(BoolFieldElem &a);
+
+    BoolFieldElem &operator*=(BoolFieldElem &a);
+
+    BoolFieldElem operator*(BoolFieldElem &a);
+
+    /**
+    * Возведение элемента в степень p. При p=0 степень равна 1.
+    */
+    BoolFieldElem pow(unsigned int p);
+
+    bool operator==(const BoolFieldElem &a){
+        return v == a.v;
+    }
+
+    inline bool operator!=(const BoolFieldElem &rhs){ return !(*this == rhs); }
+
+    /**
+    * Вывод в виде целого неотрицательного числа, запись v которого - запись в FieldVec::q-ричной системе счисления
+    * (в обратном порядке)
+    */
+    friend std::ostream& operator<<(std::ostream& os, BoolFieldElem &z){
+        unsigned long long w = 0;
+        for(int i = z.v.size() - 1; i >= 0 ; i--){
+            w <<= 1;
+            w ^= z.v[i];
+        }
+        os << w;
+        return os;
+    }
+private:
+    /**
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    */
+    BoolVec v;
+};
+
 #endif

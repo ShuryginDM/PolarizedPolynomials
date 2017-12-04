@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['notprimal',['NotPrimal',['../classNotPrimal.html',1,'']]],
-  ['nullfield',['NullField',['../classNullField.html',1,'']]]
+  ['polarizedmonomial',['PolarizedMonomial',['../classPolarizedMonomial.html',1,'']]],
+  ['polarizedpolynomial',['PolarizedPolynomial',['../classPolarizedPolynomial.html',1,'']]]
 ];

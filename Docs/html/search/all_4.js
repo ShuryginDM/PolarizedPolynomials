@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['polarizedmonomial',['PolarizedMonomial',['../classPolarizedMonomial.html',1,'']]],
-  ['polarizedpolynomial',['PolarizedPolynomial',['../classPolarizedPolynomial.html',1,'']]],
-  ['pow',['pow',['../classFieldElem.html#a345bb4b3299d17b2f1886dad5a7a7e22',1,'FieldElem']]]
+  ['operator_3c_3c',['operator&lt;&lt;',['../classFieldElem.html#a2de809d178a0d27da46b974e5ace4414',1,'FieldElem::operator&lt;&lt;()'],['../classBoolFieldElem.html#a12791f4f02849bf7acf1c343beeb044c',1,'BoolFieldElem::operator&lt;&lt;()']]]
 ];
