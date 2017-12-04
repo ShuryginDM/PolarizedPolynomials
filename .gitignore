@@ -1,6 +1,0 @@
-*.o
-pol
-Makefile
-main.cpp
-.gitignore
-doxyconf.txt
