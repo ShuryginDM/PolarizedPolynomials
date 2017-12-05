@@ -2,7 +2,6 @@
 #define POLARIZED_POLYNOMIAL_H
 
 #include <vector>
-#include <utility>
 
 #include "FieldElem.h"
 
@@ -88,7 +87,7 @@ private:
     std::vector<unsigned int> powers;
 };
 
-class PolarizedPolynomial{
+/*class PolarizedPolynomial{
 
 public:
     PolarizedPolynomial(){
@@ -146,6 +145,6 @@ private:
     std::vector<PolarizedMonomial> monomials;
     std::vector<FieldElem> coefficient;
 
-};
+};*/
 
 #endif
