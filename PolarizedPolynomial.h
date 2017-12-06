@@ -3,148 +3,115 @@
 
 #include <vector>
 
-#include "FieldElem.h"
+#include "PolarizedMonomial.h"
 
-class DifferentSize{};
-
-
-class PolarizedMonomial{
-
-public:
-    PolarizedMonomial(std::vector<unsigned int> &pows){
-        var_number = pows.size();
-        for(unsigned int i = 0; i < var_number; i++){
-            polarization.push_back(FieldElem());
-        }
-        powers = pows;
-    }
-
-    PolarizedMonomial(std::vector<unsigned int> &pows, std::vector<FieldElem> &pol){
-        if(pows.size() != pol.size()){
-            throw DifferentSize();
-        }
-        var_number = pows.size();
-        polarization = pol;
-        powers = pows;
-    }
-
-    FieldElem val_in_point(std::vector<FieldElem> &p){
-        if(p.size() != var_number){
-            throw DifferentSize();
-        }
-        FieldElem res;
-        FieldElem t;
-        FieldElem z;
-        for(unsigned int i = 0; i < var_number; i++){
-            t = (p[i] + polarization[i]);
-            z = t.pow(powers[i]);
-            res += z;
-        }
-        return res;
-    }
-
-    bool operator==(PolarizedMonomial &a){
-        if(var_number != a.var_number){
-            return false;
-        }
-        for(unsigned int i = 0; i < var_number; i++){
-            if(polarization[i] != a.polarization[i]){
-                return false;
-            }
-            if(powers[i] % 3 != a.powers[i] % 3){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const PolarizedMonomial &q){
-        for(unsigned int i = 0; i + 1 < q.var_number; i++){
-            if(!(q.powers[i])){
-                os << "1";
-                continue;
-            }
-            FieldElem t = q.polarization[i];
-            os << "(x_" << i+1;
-            if(t != 0){
-                os << " + " << t << ")";
-            }else{
-                os << ")";
-            }
-            if(q.powers[i] > 1){
-                os << "^" << q.powers[i];
-            }
-        }
-        return os;
-    }
-
-    unsigned int get_var_number(){
-        return var_number;
-    }
-private:
-    unsigned int var_number;
-    std::vector<FieldElem> polarization;
-    std::vector<unsigned int> powers;
-};
-
-/*class PolarizedPolynomial{
+/**
+* @brief Класс, реализующий работу с поляризованными полиномами над произвольным полем
+*
+* @details Представляет собой вектор пар моном - коэффициент.
+*/
+class PolarizedPolynomial{
 
 public:
     PolarizedPolynomial(){
-        complexity = 0;
+        max_complexity = 0;
     }
 
     PolarizedPolynomial(std::vector<PolarizedMonomial> &mon, std::vector<FieldElem> &coef){
         if(mon.size() != coef.size()){
-            throw DifferentSize();
+            throw DifferentSize{};
         }
-        monomials = mon;
+        monomials = std::vector<PolarizedMonomial>(mon.size());
+        for(int i = 0; i < mon.size(); i++){
+            monomials[i] = mon[i];
+        }
         coefficient = coef;
-        complexity = mon.size();
+        max_complexity = mon.size();
     }
 
-    bool push_back(PolarizedMonomial &t, unsigned int q){
-        for(unsigned int i = 0; i < complexity; i++){
-            if(t == monomials[i]){
-                return false;
-            }
-            
-        }
-        complexity++;
-
-        monomials.push_back(t);
-        coefficient.push_back(q);
-        return true;
-    }
-
+    /**
+    * считает значение полинома в точке
+    */
     FieldElem val_in_point(std::vector<FieldElem> &p){
-        if(p.size() != monomials[0].get_var_number()){
-            throw DifferentSize();
-        }
         FieldElem res;
         FieldElem z;
-        for(unsigned int i = 0; i < complexity; i++){
-            PolarizedMonomial t = monomials[i];
+        for(unsigned int i = 0; i < this->max_complexity; i++){
+            PolarizedMonomial t = this->monomials[i];
             FieldElem q = t.val_in_point(p);
-            z = coefficient[i] * q;
+            z = this->coefficient[i] * q;
             res += z;
         }
         return res;
     }
 
     friend std::ostream& operator<<(std::ostream& os, PolarizedPolynomial &q){
-        for(unsigned int i = 0; i + 1 < q.complexity; i++){
+        for(unsigned int i = 0; i + 1 < q.max_complexity; i++){
             os << q.coefficient[i] << " * " << q.monomials[i] << " + ";
         }
-        os << q.coefficient[q.complexity - 1] << " * " << q.monomials[q.complexity - 1];
+        os << q.coefficient[q.max_complexity - 1] << " * " << q.monomials[q.max_complexity - 1];
         return os;
     }
 
 private:
-    unsigned int complexity;
+    unsigned int max_complexity;
     std::vector<PolarizedMonomial> monomials;
     std::vector<FieldElem> coefficient;
 
-};*/
+};
+
+
+/**
+* @brief Класс, реализующий работу с поляризованными полиномами над полем четной характеристики
+*
+* @details Представляет собой вектор пар моном - коэффициент.
+*/
+class BoolPolarizedPolynomial{
+
+public:
+    BoolPolarizedPolynomial(){
+        max_complexity = 0;
+    }
+
+    BoolPolarizedPolynomial(std::vector<BoolPolarizedMonomial> &mon, std::vector<BoolFieldElem> &coef){
+        if(mon.size() != coef.size()){
+            throw DifferentSize{};
+        }
+        monomials = std::vector<BoolPolarizedMonomial>(mon.size());
+        for(int i = 0; i < mon.size(); i++){
+            monomials[i] = mon[i];
+        }
+        coefficient = coef;
+        max_complexity = mon.size();
+    }
+
+    /**
+    * считает значение полинома в точке
+    */
+    BoolFieldElem val_in_point(std::vector<BoolFieldElem> &p){
+        BoolFieldElem res;
+        BoolFieldElem z;
+        for(unsigned int i = 0; i < this->max_complexity; i++){
+            BoolPolarizedMonomial t = this->monomials[i];
+            BoolFieldElem q = t.val_in_point(p);
+            z = this->coefficient[i] * q;
+            res += z;
+        }
+        return res;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, BoolPolarizedPolynomial &q){
+        for(unsigned int i = 0; i + 1 < q.max_complexity; i++){
+            os << q.coefficient[i] << " * " << q.monomials[i] << " + ";
+        }
+        os << q.coefficient[q.max_complexity - 1] << " * " << q.monomials[q.max_complexity - 1];
+        return os;
+    }
+
+private:
+    unsigned int max_complexity;
+    std::vector<BoolPolarizedMonomial> monomials;
+    std::vector<BoolFieldElem> coefficient;
+
+};
 
 #endif

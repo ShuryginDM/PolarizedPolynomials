@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['irreducible_5fpolynominal',['irreducible_polynominal',['../classFieldElem.html#a5413b53e6b21101103a0d0eaea28fd25',1,'FieldElem::irreducible_polynominal()'],['../classBoolFieldElem.html#ab8e2a298c3ce95c9854a35cedad77ab7',1,'BoolFieldElem::irreducible_polynominal()']]]
+  ['irreducible_5fpolynomial',['irreducible_polynomial',['../classFieldElem.html#a09ff9fa2505a65281297249838fd1579',1,'FieldElem::irreducible_polynomial()'],['../classBoolFieldElem.html#a5e832451d24da9bc969b3bc1222bdd72',1,'BoolFieldElem::irreducible_polynomial()']]]
 ];

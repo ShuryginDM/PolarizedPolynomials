@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>PolarizedPolynomal: Класс DifferentSize</title>
+<title>PolarizedPolynomal: Класс BoolPolarizedPolynomial</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,24 +87,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#friends">Друзья</a>  </div>
   <div class="headertitle">
-<div class="title">Класс DifferentSize</div>  </div>
+<div class="title">Класс BoolPolarizedPolynomial</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Класс, используемый для того, чтобы показать тип исключения "разное число переменных".  
- <a href="classDifferentSize.html#details">Подробнее...</a></p>
+<p>Класс, реализующий работу с поляризованными полиномами над полем четной характеристики  
+ <a href="classBoolPolarizedPolynomial.html#details">Подробнее...</a></p>
 
-<p><code>#include &lt;<a class="el" href="PolarizedMonomial_8h_source.html">PolarizedMonomial.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="PolarizedPolynomial_8h_source.html">PolarizedPolynomial.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a2fa3a79b5b7cc863aa3484fb60a3acff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fa3a79b5b7cc863aa3484fb60a3acff"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BoolPolarizedPolynomial</b> (std::vector&lt; <a class="el" href="classBoolPolarizedMonomial.html">BoolPolarizedMonomial</a> &gt; &amp;mon, std::vector&lt; <a class="el" href="classBoolFieldElem.html">BoolFieldElem</a> &gt; &amp;coef)</td></tr>
+<tr class="separator:a2fa3a79b5b7cc863aa3484fb60a3acff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8341c9aff07d6bada51019ed2fe24305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBoolFieldElem.html">BoolFieldElem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoolPolarizedPolynomial.html#a8341c9aff07d6bada51019ed2fe24305">val_in_point</a> (std::vector&lt; <a class="el" href="classBoolFieldElem.html">BoolFieldElem</a> &gt; &amp;p)</td></tr>
+<tr class="separator:a8341c9aff07d6bada51019ed2fe24305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Друзья</h2></td></tr>
+<tr class="memitem:a1640ae476c375dd879066579aae65304"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1640ae476c375dd879066579aae65304"></a>
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, <a class="el" href="classBoolPolarizedPolynomial.html">BoolPolarizedPolynomial</a> &amp;q)</td></tr>
+<tr class="separator:a1640ae476c375dd879066579aae65304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Класс, используемый для того, чтобы показать тип исключения "разное число переменных". </p>
-<p>Может появляться в нескольких случаях:</p><ul>
-<li>длины вектора поляризации и вектора степеней монома различны при инициализации монома</li>
-<li>длины вектора поляризации и вектора значений переменных различны</li>
-<li>была изменена длина вектора поляризации после инициализации монома </li>
-</ul>
-</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
-<li><a class="el" href="PolarizedMonomial_8h_source.html">PolarizedMonomial.h</a></li>
+<div class="textblock"><p>Класс, реализующий работу с поляризованными полиномами над полем четной характеристики </p>
+<p>Представляет собой вектор пар моном - коэффициент. </p>
+</div><h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a8341c9aff07d6bada51019ed2fe24305"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBoolFieldElem.html">BoolFieldElem</a> BoolPolarizedPolynomial::val_in_point </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classBoolFieldElem.html">BoolFieldElem</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>считает значение полинома в точке </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li><a class="el" href="PolarizedPolynomial_8h_source.html">PolarizedPolynomial.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

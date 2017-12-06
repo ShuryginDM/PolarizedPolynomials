@@ -18,11 +18,11 @@
 * @brief Класс, реализующий элемент произвольного поля.
 *
 * @details Реализует работу с поляризованным полиномом над полем
-* из \f[FieldVec::q ^ {FieldElem::irreducible\_polynominal.size()} \f] элементов \n
+* из \f[FieldVec::q ^ {FieldElem::irreducible\_polynomial.size()} \f] элементов \n
 * Перед первой инициализацией переменной класса FieldElem должны быть явно \n
-* указаны FieldVec::q и FieldElem::irreducible_polynominal \n
+* указаны FieldVec::q и FieldElem::irreducible_polynomial \n
 * q должно принимать значения >= 2 \n
-* irreducible_polynominal - неприводимый полином необходимой степени. Пример получения такого
+* irreducible_polynomial - неприводимый полином необходимой степени. Пример получения такого
 * [FieldVecLink]: https://github.com/ShuryginDM/FieldVec
 * полинома есть в [примере использования библиотеки FieldVec Example1][FieldVecLink]
 */
@@ -30,9 +30,9 @@ class FieldElem
 {
 public:
     /**
-    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynomial
     */
-    static FieldVec irreducible_polynominal;
+    static FieldVec irreducible_polynomial;
     
     /**
     * Конструктор. Создает полином, равный 0 в поле
@@ -80,7 +80,7 @@ public:
     }
 private:
     /**
-    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynomial
     */
     FieldVec v;
 };
@@ -89,10 +89,10 @@ private:
 * @brief Класс, реализующий элемент поля из 2 ^ k элементов
 *
 * @details Реализует работу с поляризованным полиномом над полем
-* из \f[2 ^ {BoolFieldElem::irreducible\_polynominal.size()} \f] элементов \n
+* из \f[2 ^ {BoolFieldElem::irreducible\_polynomial.size()} \f] элементов \n
 * Перед первой инициализацией переменной класса BoolFieldElem должен быть явно \n
-* указан BoolVec::irreducible_polynominal \n
-* irreducible_polynominal - неприводимый полином необходимой степени. Пример получения такого
+* указан BoolVec::irreducible_polynomial \n
+* irreducible_polynomial - неприводимый полином необходимой степени. Пример получения такого
 * [FieldVecLink]: https://github.com/ShuryginDM/FieldVec
 * полинома есть в [примере использования библиотеки FieldVec Example1][FieldVecLink] \n\n
 * ###Лучше использовать этот класс, чем FieldElem при FieldVec::q == 2.
@@ -101,9 +101,9 @@ class BoolFieldElem
 {
 public:
     /**
-    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynomial
     */
-    static BoolVec irreducible_polynominal;
+    static BoolVec irreducible_polynomial;
     
     /**
     * Конструктор. Создает полином, равный 0 в поле
@@ -151,7 +151,7 @@ public:
     }
 private:
     /**
-    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynominal
+    * Элемент поля - остаток от деления на неприводимый многочлен irreducible_polynomial
     */
     BoolVec v;
 };

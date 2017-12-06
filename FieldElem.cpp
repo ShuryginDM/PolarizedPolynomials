@@ -1,14 +1,14 @@
 #include "FieldElem.h"
 
-FieldVec FieldElem::irreducible_polynominal(0);
-BoolVec BoolFieldElem::irreducible_polynominal(0);
+FieldVec FieldElem::irreducible_polynomial(0);
+BoolVec BoolFieldElem::irreducible_polynomial(0);
 
 FieldElem::FieldElem(unsigned long long z){
-    v = FieldVec(z) % irreducible_polynominal;
+    v = FieldVec(z) % irreducible_polynomial;
 }
 
 FieldElem::FieldElem(FieldVec &t){
-    v = t % irreducible_polynominal;
+    v = t % irreducible_polynomial;
 }
 
 FieldElem &FieldElem::operator+=(FieldElem &a){
@@ -23,7 +23,7 @@ FieldElem FieldElem::operator+(FieldElem &a){
 }
 
 FieldElem &FieldElem::operator*=(FieldElem &a){
-    v = (v * a.v) % irreducible_polynominal;
+    v = (v * a.v) % irreducible_polynomial;
     return *this;
 }
 
@@ -54,11 +54,11 @@ FieldElem FieldElem::pow(unsigned int p){
 
 
 BoolFieldElem::BoolFieldElem(unsigned long long z){
-    v = BoolVec(z) % irreducible_polynominal;
+    v = BoolVec(z) % irreducible_polynomial;
 }
 
 BoolFieldElem::BoolFieldElem(BoolVec &t){
-    v = t % irreducible_polynominal;
+    v = t % irreducible_polynomial;
 }
 
 BoolFieldElem &BoolFieldElem::operator+=(BoolFieldElem &a){
@@ -73,7 +73,7 @@ BoolFieldElem BoolFieldElem::operator+(BoolFieldElem &a){
 }
 
 BoolFieldElem &BoolFieldElem::operator*=(BoolFieldElem &a){
-    v = (v * a.v) % irreducible_polynominal;
+    v = (v * a.v) % irreducible_polynomial;
     return *this;
 }
 

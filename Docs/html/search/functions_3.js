@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['push_5fback',['push_back',['../classFieldVec.html#a33bd8492ed69ad28bd4ec0731b6dc0dc',1,'FieldVec::push_back()'],['../classBoolVec.html#a621051f8077d61277d08d636b3a74cbb',1,'BoolVec::push_back()']]]
+  ['polarizedmonomial',['PolarizedMonomial',['../classPolarizedMonomial.html#a2bc185a56ed11653611bc98a5ea54070',1,'PolarizedMonomial']]],
+  ['pow',['pow',['../classFieldElem.html#a345bb4b3299d17b2f1886dad5a7a7e22',1,'FieldElem::pow()'],['../classBoolFieldElem.html#ad9a16a587aa8b75b023b47ad5ba27622',1,'BoolFieldElem::pow()']]]
 ];

@@ -94,17 +94,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="title">Класс PolarizedPolynomial</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Класс, реализующий работу с поляризованными полиномами над произвольным полем  
+ <a href="classPolarizedPolynomial.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PolarizedPolynomial_8h_source.html">PolarizedPolynomial.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:ab1b057e10293d025be7218eee229bb02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1b057e10293d025be7218eee229bb02"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PolarizedPolynomial</b> (std::vector&lt; <a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> &gt; &amp;mon, std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;coef)</td></tr>
 <tr class="separator:ab1b057e10293d025be7218eee229bb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3be77456581e33c11abdbd47f5afdab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3be77456581e33c11abdbd47f5afdab"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>push_back</b> (<a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> &amp;t, unsigned int q)</td></tr>
-<tr class="separator:ad3be77456581e33c11abdbd47f5afdab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50a5b52ed2cdc3423c9d4dba6912b2ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50a5b52ed2cdc3423c9d4dba6912b2ff"></a>
-<a class="el" href="classFieldElem.html">FieldElem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>val_in_point</b> (std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;p)</td></tr>
+<tr class="memitem:a50a5b52ed2cdc3423c9d4dba6912b2ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFieldElem.html">FieldElem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPolarizedPolynomial.html#a50a5b52ed2cdc3423c9d4dba6912b2ff">val_in_point</a> (std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;p)</td></tr>
 <tr class="separator:a50a5b52ed2cdc3423c9d4dba6912b2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -113,6 +114,35 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>push_back</b> (<a cla
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, <a class="el" href="classPolarizedPolynomial.html">PolarizedPolynomial</a> &amp;q)</td></tr>
 <tr class="separator:af6a71142e2dfd62c083ced7cb9902644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс, реализующий работу с поляризованными полиномами над произвольным полем </p>
+<p>Представляет собой вектор пар моном - коэффициент. </p>
+</div><h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a50a5b52ed2cdc3423c9d4dba6912b2ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFieldElem.html">FieldElem</a> PolarizedPolynomial::val_in_point </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>считает значение полинома в точке </p>
+
+</div>
+</div>
 <hr/>Объявления и описания членов класса находятся в файле:<ul>
 <li><a class="el" href="PolarizedPolynomial_8h_source.html">PolarizedPolynomial.h</a></li>
 </ul>
