@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fieldelem',['FieldElem',['../classFieldElem.html#a5f1990abb7ced54911a713f6ac1b5071',1,'FieldElem::FieldElem()'],['../classFieldElem.html#ac70bac72101532b36221ba5657fcf128',1,'FieldElem::FieldElem(unsigned long long z)']]]
+  ['boolfieldelem',['BoolFieldElem',['../classBoolFieldElem.html#a9e2560450425c5f9bd82866c0df0f720',1,'BoolFieldElem::BoolFieldElem()'],['../classBoolFieldElem.html#abf60dc281078643e95278c91c4742187',1,'BoolFieldElem::BoolFieldElem(unsigned long long z)']]],
+  ['boolpolarizedmonomial',['BoolPolarizedMonomial',['../classBoolPolarizedMonomial.html#ae201031d76598db56d619f2e441210e2',1,'BoolPolarizedMonomial']]]
 ];

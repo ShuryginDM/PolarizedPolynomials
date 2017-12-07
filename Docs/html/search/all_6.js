@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['val_5fin_5fpoint',['val_in_point',['../classPolarizedMonomial.html#aa021a481e4f7bb1f2f1e156b01acc26f',1,'PolarizedMonomial::val_in_point()'],['../classBoolPolarizedMonomial.html#a103007b0e6548ba7594ccb583d4052df',1,'BoolPolarizedMonomial::val_in_point()'],['../classPolarizedPolynomial.html#a50a5b52ed2cdc3423c9d4dba6912b2ff',1,'PolarizedPolynomial::val_in_point()'],['../classBoolPolarizedPolynomial.html#a8341c9aff07d6bada51019ed2fe24305',1,'BoolPolarizedPolynomial::val_in_point()']]]
+  ['polarization',['polarization',['../classPolarizedMonomial.html#ab02703876b335ec028e3b82848fcbbb5',1,'PolarizedMonomial::polarization()'],['../classBoolPolarizedMonomial.html#a8e52a2c44924c28b7085ad02523bf6cc',1,'BoolPolarizedMonomial::polarization()']]],
+  ['polarizedmonomial',['PolarizedMonomial',['../classPolarizedMonomial.html',1,'PolarizedMonomial'],['../classPolarizedMonomial.html#a2bc185a56ed11653611bc98a5ea54070',1,'PolarizedMonomial::PolarizedMonomial()']]],
+  ['polarizedpolynomial',['PolarizedPolynomial',['../classPolarizedPolynomial.html',1,'']]],
+  ['pow',['pow',['../classFieldElem.html#a345bb4b3299d17b2f1886dad5a7a7e22',1,'FieldElem::pow()'],['../classBoolFieldElem.html#ad9a16a587aa8b75b023b47ad5ba27622',1,'BoolFieldElem::pow()']]]
 ];

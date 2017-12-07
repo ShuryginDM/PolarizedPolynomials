@@ -102,11 +102,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:ab1b057e10293d025be7218eee229bb02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1b057e10293d025be7218eee229bb02"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PolarizedPolynomial</b> (std::vector&lt; <a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> &gt; &amp;mon, std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;coef)</td></tr>
-<tr class="separator:ab1b057e10293d025be7218eee229bb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86ffce7ac09b611fd6498ca3d5131405"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86ffce7ac09b611fd6498ca3d5131405"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PolarizedPolynomial</b> (std::vector&lt; <a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> * &gt; &amp;mon, std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;coef)</td></tr>
+<tr class="separator:a86ffce7ac09b611fd6498ca3d5131405"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a5b52ed2cdc3423c9d4dba6912b2ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFieldElem.html">FieldElem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPolarizedPolynomial.html#a50a5b52ed2cdc3423c9d4dba6912b2ff">val_in_point</a> (std::vector&lt; <a class="el" href="classFieldElem.html">FieldElem</a> &gt; &amp;p)</td></tr>
 <tr class="separator:a50a5b52ed2cdc3423c9d4dba6912b2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0956bba89f0baf7e6cf0e4594f3ef5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPolarizedPolynomial.html#ab0956bba89f0baf7e6cf0e4594f3ef5e">add</a> (<a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> &amp;m, <a class="el" href="classFieldElem.html">FieldElem</a> &amp;coef)</td></tr>
+<tr class="separator:ab0956bba89f0baf7e6cf0e4594f3ef5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Друзья</h2></td></tr>
@@ -118,6 +120,41 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <div class="textblock"><p>Класс, реализующий работу с поляризованными полиномами над произвольным полем </p>
 <p>Представляет собой вектор пар моном - коэффициент. </p>
 </div><h2 class="groupheader">Методы</h2>
+<a class="anchor" id="ab0956bba89f0baf7e6cf0e4594f3ef5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PolarizedPolynomial::add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPolarizedMonomial.html">PolarizedMonomial</a> &amp;&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFieldElem.html">FieldElem</a> &amp;&#160;</td>
+          <td class="paramname"><em>coef</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Прибавляет к полиному моном m, домноженный на коэффициент coef </p>
+
+</div>
+</div>
 <a class="anchor" id="a50a5b52ed2cdc3423c9d4dba6912b2ff"></a>
 <div class="memitem">
 <div class="memproto">

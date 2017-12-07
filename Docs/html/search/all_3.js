@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['irreducible_5fpolynomial',['irreducible_polynomial',['../classFieldElem.html#a09ff9fa2505a65281297249838fd1579',1,'FieldElem::irreducible_polynomial()'],['../classBoolFieldElem.html#a5e832451d24da9bc969b3bc1222bdd72',1,'BoolFieldElem::irreducible_polynomial()']]]
+  ['fieldelem',['FieldElem',['../classFieldElem.html',1,'FieldElem'],['../classFieldElem.html#a5f1990abb7ced54911a713f6ac1b5071',1,'FieldElem::FieldElem()'],['../classFieldElem.html#ac70bac72101532b36221ba5657fcf128',1,'FieldElem::FieldElem(unsigned long long z)']]]
 ];

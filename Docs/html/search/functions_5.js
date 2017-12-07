@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tex_5fprint',['tex_print',['../classFieldVec.html#a58bf4da4f4b15adea0fd3ef4cc754b2f',1,'FieldVec::tex_print()'],['../classBoolVec.html#ae1f7b1ccede38dbc2ddc9cf7f3f4b6c9',1,'BoolVec::tex_print()']]]
+  ['val_5fin_5fpoint',['val_in_point',['../classPolarizedMonomial.html#aa021a481e4f7bb1f2f1e156b01acc26f',1,'PolarizedMonomial::val_in_point()'],['../classBoolPolarizedMonomial.html#a103007b0e6548ba7594ccb583d4052df',1,'BoolPolarizedMonomial::val_in_point()'],['../classPolarizedPolynomial.html#a50a5b52ed2cdc3423c9d4dba6912b2ff',1,'PolarizedPolynomial::val_in_point()'],['../classBoolPolarizedPolynomial.html#a3daf2ec20958f782b6bbddebb2ddb6c7',1,'BoolPolarizedPolynomial::val_in_point()']]]
 ];
