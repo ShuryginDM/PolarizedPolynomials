@@ -17,14 +17,11 @@ public:
         max_complexity = 0;
     }
 
-    PolarizedPolynomial(std::vector<PolarizedMonomial> &mon, std::vector<FieldElem> &coef){
+    PolarizedPolynomial(std::vector<PolarizedMonomial *> &mon, std::vector<FieldElem> &coef){
         if(mon.size() != coef.size()){
             throw DifferentSize{};
         }
-        monomials = std::vector<PolarizedMonomial>(mon.size());
-        for(int i = 0; i < mon.size(); i++){
-            monomials[i] = mon[i];
-        }
+        monomials = mon;
         coefficient = coef;
         max_complexity = mon.size();
     }
@@ -35,26 +32,38 @@ public:
     FieldElem val_in_point(std::vector<FieldElem> &p){
         FieldElem res;
         FieldElem z;
-        for(unsigned int i = 0; i < this->max_complexity; i++){
-            PolarizedMonomial t = this->monomials[i];
+        for(unsigned int i = 0; i < max_complexity; i++){
+            PolarizedMonomial t = *monomials[i];
             FieldElem q = t.val_in_point(p);
-            z = this->coefficient[i] * q;
+            z = coefficient[i] * q;
             res += z;
         }
         return res;
     }
 
+    void add(PolarizedMonomial &m, FieldElem &coef){
+	for(int i = 0; i < max_complexity; i++){
+	    if(m == *monomials[i]){
+		coefficient[i] += coef;
+	    	return;
+	    }
+	}
+	monomials.push_back(&m);
+	coefficient.push_back(coef);
+	max_complexity++;
+    }
+
     friend std::ostream& operator<<(std::ostream& os, PolarizedPolynomial &q){
         for(unsigned int i = 0; i + 1 < q.max_complexity; i++){
-            os << q.coefficient[i] << " * " << q.monomials[i] << " + ";
+            os << q.coefficient[i] << " * " << *q.monomials[i] << " + ";
         }
-        os << q.coefficient[q.max_complexity - 1] << " * " << q.monomials[q.max_complexity - 1];
+        os << q.coefficient[q.max_complexity - 1] << " * " << *q.monomials[q.max_complexity - 1];
         return os;
     }
 
 private:
     unsigned int max_complexity;
-    std::vector<PolarizedMonomial> monomials;
+    std::vector<PolarizedMonomial *> monomials;
     std::vector<FieldElem> coefficient;
 
 };
