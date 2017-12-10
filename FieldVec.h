@@ -1,6 +1,7 @@
 /**
 *@mainpage Библиотека работы с кольцом многочленов над кольцом вычетов из q элементов.
 *@author Шурыгин Дмитрий Михайлович, 318 ВМК МГУ, 2017
+*@file Example1.cpp @file Example 1_1.cpp @file Example2.cpp
 */
 
 #ifndef FIELDVEC_H
@@ -33,33 +34,31 @@ class DivisionOnZero{};
 /**
 * @class FieldVec
 * @brief Основной класс.
-*
-* Реализует работу с кольцом многочленов над кольцом вычетов из q элементов
-* Пример использования приведен в 
-*
-*\example Example1.cpp
+* Реализует работу с кольцом многочленов над кольцом вычетов из q элементов. \n Пример использования приведен в 
+* \example Example1.cpp Example1_1.cpp Example2.cpp
 */
 class FieldVec{
 
 public:
 
     /**
-    * @var q статическая переменная. Возможна работа только с кольцом полиномов только над кольцом вычетов по одному модулю.
-    * В начале программы явным образом должно быть прописано 
-    * FieldVec::q = <Количество элементов кольца вычетов>; (без <>)
-    * Программа может некорректно обрабатывать старые векторы при изменении q
+    * Статическая переменная. Возможна работа только с кольцом полиномов только над кольцом вычетов по одному модулю. \n
+    * В начале программы явным образом должно быть прописано \n
+    * @warning FieldVec::q = Количество элементов кольца вычетов; 
+    * @warning Программа может некорректно обрабатывать старые векторы при изменении q
+    * @warning При q == 2 лучше использовать BoolVec
     */
     static unsigned int q;
     
     /**
-    * @function FieldVec(void) Конструктор. При таком создании полином представляется в виде 0 * x ^ 0
+    *  FieldVec(void) Конструктор. При таком создании полином представляется в виде 0 * x ^ 0
     * @throw NullField если q == 0
     * @throw OneField если q == 1
     */
     FieldVec(void);
 
     /**
-    * @function FieldVec(std::vector<unsigned int> v) Конструктор. Если в векторе v нет элементов, то полином представляется в виде 0 * x ^ 0,
+    *  FieldVec(std::vector<unsigned int> v) Конструктор. Если в векторе v нет элементов, то полином представляется в виде 0 * x ^ 0,
     * иначе - коэффициентом при x^i будет v[i] 
     * @param[in] v Вектор коэффициентов. В v[i] коэффициент при x^i.
     * @throw NullField Если q == 0
@@ -69,22 +68,24 @@ public:
 
 
     /** 
-    * @function FieldVec(std::vector<unsigned int> v) Конструктор.
+    *  FieldVec(std::vector<unsigned int> v) Конструктор.
     * Записывает в var представление числа t в q-ричной системе счисления (в обратном порядке)
     */
     FieldVec(unsigned long long t);
 
-
+    /**
+    * @brief Конструктор копирования
+    */
     FieldVec(FieldVec const &v);
 
     /**
-    * @function push_back(unsigned int t) Функция расширения вектора коэффициентов полинома.
+    *  push_back(unsigned int t) Функция расширения вектора коэффициентов полинома.
     * @param[in] t Если хранится полином с максимальной степенью s (перед которой коэффициент, возможно, равен 0), то
     * к этому полиному добавляется t * q ^ (s + 1).
     */
     void push_back(const unsigned int &t);
     /**
-    * @function size Показывает, сколько элементов находится в векторе коэффициентов
+    *  size Показывает, сколько элементов находится в векторе коэффициентов
     * @return Максимальная степень x в этом многочлене (перед которой коэффициент, возможно, равен 0)
     */
     int size() const;
@@ -97,39 +98,47 @@ public:
     unsigned int &operator[](const unsigned int &t);
 
     /**
-    * @function operator+ Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю q
+    *  operator+ Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю q
     */
     FieldVec operator+(const FieldVec &v);
     /**
-    * @function operator+= Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю q
+    *  operator+= Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю q
     */
     FieldVec &operator+=(const FieldVec &v);
 
     /**
-    * @function operator* Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю q
+    *  operator* Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю q
     */
     FieldVec operator*(const FieldVec &v);
 
     /**
-    * @function operator*= Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю q
+    *  operator*= Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю q
     */
     FieldVec &operator*=(const FieldVec &v);
 
     /**
-    * @function operator== Оператор сравнение полиномов на равенство в кольце полиномов над кольцом вычетов по модулю q
+    *  operator== Оператор сравнение полиномов на равенство в кольце полиномов над кольцом вычетов по модулю q
     */
     bool operator==(const FieldVec &v);
 
-
+    /**
+    * @brief Унарный минус. Заменяет все коэффициенты c на q-c
+    */
     FieldVec operator-();
 
+    /**
+    * @brief прибавляет к вектору (-v)
+    */
     FieldVec operator-(const FieldVec &v);
 
+    /**
+    * @brief прибавляет к вектору (-v)
+    */
     FieldVec &operator-=(const FieldVec &v);
 
 
     /**
-    * @function operator% Оператор вычисления остатка от деления полиномов в кольце полиномов над полем вычетов по модулю q
+    *  operator% Оператор вычисления остатка от деления полиномов в кольце полиномов над полем вычетов по модулю q
     * @throw NotPrimal если q - не простое число (в данном случае если коэффициент при наивысшей степени x является делителем q и
     * при этом не равен q)
     * @throw DivisionOnZero если v - вектор, состоящий из 0
@@ -138,13 +147,16 @@ public:
     FieldVec operator%(const FieldVec &v);
 
     /**
-    * @function operator/ Оператор вычисления результата деления полиномов в кольце полиномов над полем вычетов по модулю q
+    *  operator/ Оператор вычисления результата деления полиномов в кольце полиномов над полем вычетов по модулю q
     * @throw NotPrimal если q - не простое число
     * @throw DivisionOnZero если v - вектор, состоящий из 0
     * @return результат деления на полином v
     */
     FieldVec operator/(FieldVec &v);
 
+    /**
+    * Вывод многочлена в виде вектора (v[0], v[1], ... , v[n]), где v[i] - коэффициент при x^i
+    */
     friend std::ostream& operator<<(std::ostream &os, const FieldVec &v){
         os << "(";
         for(int i = 0; i < v.size() - 1; i++){
@@ -169,7 +181,7 @@ public:
     */
     FieldVec &operator++(int l);
     /**
-    * @function tex_print
+    *  tex_print
     * @brief Вывод полинома наподобие формулы LaTeX.
     * 
     * 
@@ -220,7 +232,7 @@ public:
 
 
     /**
-    * @function set Устанавливает коэфиициент при x ^ z равным t % q 
+    *  set Устанавливает коэфиициент при x ^ z равным t % q 
     */
     void set(const unsigned int &z, const unsigned int &t);
 
@@ -243,41 +255,45 @@ private:
 * Лучше оптимизирован, чем FieldVec с q == 2
 * Пример использования приведен в
 * 
-* \example Example1.cpp
+* \example Example1.cpp \n
+* \example Example1_1.cpp \n
+* \example Example2.cpp
 */
 class BoolVec{
 
 public:
     
     /**
-    * @function FieldVec(void) Конструктор. При таком создании полином представляется в виде 0 * x ^ 0
+    *  FieldVec(void) Конструктор. При таком создании полином представляется в виде 0 * x ^ 0
     */
     BoolVec();
 
     /**
-    * @function FieldVec(std::vector<unsigned int> v) Конструктор. Если в векторе v нет элементов, то полином представляется в виде 0 * x ^ 0,
+    *  FieldVec(std::vector<unsigned int> v) Конструктор. Если в векторе v нет элементов, то полином представляется в виде 0 * x ^ 0,
     * иначе - коэффициентом при x^i будет v[i] 
     * @param[in] v Вектор коэффициентов. В v[i] коэффициент при x^i.
     */
     BoolVec(std::vector<bool> &v);
 
-
+    /**
+    * @brief конструктор копирования
+    */
     BoolVec(BoolVec const &v);
 
     /** 
-    * @function FieldVec(std::vector<unsigned int> v) Конструктор.
+    *  FieldVec(std::vector<unsigned int> v) Конструктор.
     * Записывает в var представление числа t в двоичной системе счисления (в обратном порядке)
     */
     BoolVec(unsigned long long t);
 
     /**
-    * @function push_back(unsigned int t) Функция расширения вектора коэффициентов полинома.
+    *  push_back(unsigned int t) Функция расширения вектора коэффициентов полинома.
     * @param[in] t Если хранится полином с максимальной степенью s (перед которой коэффициент, возможно, равен 0), то
     * к этому полиному добавляется t * q ^ (s + 1).
     */
     void push_back(const bool &t);
     /**
-    * @function size Показывает, сколько элементов находится в векторе коэффициентов
+    *  size Показывает, сколько элементов находится в векторе коэффициентов
     * @return Максимальная степень x в этом многочлене (перед которой коэффициент, возможно, равен 0)
     */
     int size() const;
@@ -289,46 +305,56 @@ public:
     bool operator[](const unsigned int &t);
 
     /**
-    * @function operator+ Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю 2
+    *  operator+ Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю 2
     */
     BoolVec operator+(const BoolVec &v);
     /**
-    * @function operator+= Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю 2
+    *  operator+= Оператор сложения полиномов в кольце полиномов над кольцом вычетов по модулю 2
     */
     BoolVec &operator+=(const BoolVec &v);
 
     /**
-    * @function operator* Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю 2
+    *  operator* Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю 2
     */
     BoolVec operator*(const BoolVec &v);
 
     /**
-    * @function operator*= Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю 2
+    *  operator*= Оператор умножения полиномов в кольце полиномов над кольцом вычетов по модулю 2
     */
     BoolVec &operator*=(const BoolVec &v);
 
     /**
-    * @function operator== Оператор сравнение полиномов на равенство в кольце полиномов над кольцом вычетов по модулю 2
+    *  operator== Оператор сравнение полиномов на равенство в кольце полиномов над кольцом вычетов по модулю 2
     */
     bool operator==(const BoolVec &v);
 
 
-    BoolVec operator-();
+    /**
+    * @brief Унарный -. Не делает ничего.
+    */
+    BoolVec operator-(){ return *this; }
 
-    BoolVec operator-(const BoolVec &v);
-
-    BoolVec &operator-=(const BoolVec &v);
+    /**
+    * @brief прибавляет к вектору (-v)
+    */
+    BoolVec operator-(const BoolVec &v){return *this + v;}
 
 
     /**
-    * @function operator% Оператор вычисления остатка от деления полиномов в кольце полиномов над полем вычетов по модулю 2
+    * @brief прибавляет к вектору (-v)
+    */
+    BoolVec &operator-=(const BoolVec &v){ *this += v; return *this; }
+
+
+    /**
+    *  operator% Оператор вычисления остатка от деления полиномов в кольце полиномов над полем вычетов по модулю 2
     * @throw DivisionOnZero если v - вектор, состоящий из 0
     * @return остаток от деления на полином v
     */
     BoolVec operator%(const BoolVec &v);
 
     /**
-    * @function operator/ Оператор вычисления результата деления полиномов в кольце полиномов над полем вычетов по модулю 2
+    *  operator/ Оператор вычисления результата деления полиномов в кольце полиномов над полем вычетов по модулю 2
     * @throw DivisionOnZero если v - вектор, состоящий из 0
     * @return результат деления на полином v
     */
@@ -348,6 +374,9 @@ public:
     */
     BoolVec &operator++(int l);
 
+    /**
+    * Вывод многочлена в виде вектора (v[0], v[1], ... , v[n]), где v[i] - коэффициент при x^i
+    */
     friend std::ostream& operator<<(std::ostream &os, const BoolVec &v){
         os << "(";
         for(int i = 0; i < v.size() - 1; i++){
@@ -359,7 +388,7 @@ public:
     }
 
     /**
-    * @function tex_print
+    *  tex_print
     * @brief Вывод полинома наподобие формулы LaTeX.
     * 
     * 
@@ -409,7 +438,7 @@ public:
     void tex_print(std::ostream &os, const char *name = "x");
 
     /**
-    * @function set Устанавливает коэфиициент при x ^ z равным b 
+    *  set Устанавливает коэфиициент при x ^ z равным b 
     */
     void set(const unsigned int &z, const bool &b);
 

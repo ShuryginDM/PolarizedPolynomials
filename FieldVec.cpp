@@ -448,7 +448,7 @@ BoolVec BoolVec::operator%(const BoolVec &v){
 
 BoolVec BoolVec::operator/(BoolVec &v){
     unsigned int max_coef_i = 0;
-    bool max_coef = 0;
+    bool max_coef = v.var[0];
     for(unsigned int i = v.size() - 1; i > 0; i--){
         if(v.var[i]){
             max_coef = v.var[i];
@@ -471,6 +471,7 @@ BoolVec BoolVec::operator/(BoolVec &v){
             }
         }
     }
+    return div_;
 }
 
 void BoolVec::set(const unsigned int &z, const bool &b){
